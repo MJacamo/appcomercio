@@ -1,0 +1,36 @@
+<nav aria-label="breadcrumb d-flex justify-content-between">
+  <ol class="breadcrumb justify-content-between">
+    <h4 class="breadcrumb-item"><a >Catalogo de materiales</a></h4>
+    <button type="button" routerLink='/dashboard/catalogo/create' routerLinkActive='active' class="btn btn-primary">Nuevo</button>
+  </ol>
+</nav>
+
+
+
+<div class="container ">
+  <div class="d-flex justify-content-between ">
+      <input #search class="form-control mr-sm-2" type="search" placeholder="Buscar por categoria o proveedor" aria-label="Search">
+      <button (click)="searchCatalogo(search.value)" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 mt-2">
+    <div *ngFor="let catalogo of catalogos" class="col mb-4">
+      <div class="card h-100">
+        <div class="card-header">Nombre: {{catalogo.name}}</div>
+        <div class="card-body">
+          <p class="card-title">Categoria: {{catalogo.category.name}}</p>
+          <p class="card-text mb-0">Precio: {{catalogo.price}}</p>
+          <p class="card-text mb-0"> Descripción: {{catalogo.description}}</p>
+          <p class="card-text mb-0"> Existencias: {{catalogo.existence}}</p>
+          <p class="card-text mb-0"> Proveedores:</p>
+          <span *ngFor="let item of catalogo.provider" class="badge badge-primary mr-1">{{item.name}}</span>
+        </div>
+        <div class="card-footer bg-transparent">
+          <a  class="btn btn-primary">Editar</a>
+          <a  (click)='deleteCatalogo(catalogo._id)' class="btn btn-primary ml-2">Eliminar</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
